@@ -33,7 +33,7 @@
                 <constraints nullable="true" />
             </column>
 
-            <column name="details" type="varchar(255)">
+            <column name="details" type="json">
                 <constraints nullable="true" />
             </column>
 
