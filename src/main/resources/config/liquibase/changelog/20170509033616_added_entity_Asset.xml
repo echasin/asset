@@ -33,6 +33,10 @@
                 <constraints nullable="true" />
             </column>
 
+            <column name="details" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+
             <column name="status" type="varchar(25)">
                 <constraints nullable="false" />
             </column>

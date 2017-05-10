@@ -43,6 +43,9 @@ public class Asset implements Serializable {
     @Column(name = "description", length = 255)
     private String description;
 
+    @Column(name = "details")
+    private String details;
+
     @NotNull
     @Size(max = 25)
     @Column(name = "status", length = 25, nullable = false)
@@ -119,6 +122,19 @@ public class Asset implements Serializable {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public String getDetails() {
+        return details;
+    }
+
+    public Asset details(String details) {
+        this.details = details;
+        return this;
+    }
+
+    public void setDetails(String details) {
+        this.details = details;
     }
 
     public String getStatus() {
@@ -263,6 +279,7 @@ public class Asset implements Serializable {
             ", name='" + getName() + "'" +
             ", nameshort='" + getNameshort() + "'" +
             ", description='" + getDescription() + "'" +
+            ", details='" + getDetails() + "'" +
             ", status='" + getStatus() + "'" +
             ", lastmodifiedby='" + getLastmodifiedby() + "'" +
             ", lastmodifieddatetime='" + getLastmodifieddatetime() + "'" +
