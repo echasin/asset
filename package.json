@@ -1,0 +1,7 @@
+{
+  "devDependencies": {
+    "generator-jhipster-angular-datatables": "1.3.10",
+    "generator-jhipster-elasticsearch-reindexer": "0.3.0",
+    "generator-jhipster": "4.4.0"
+  }
+}
