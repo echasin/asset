@@ -1,7 +1,7 @@
 package com.innvo.json;
 
 import org.hibernate.HibernateException;
-import org.hibernate.engine.spi.SessionImplementor;
+import org.hibernate.engine.spi.SharedSessionContractImplementor;
 import org.hibernate.usertype.UserType;
 
 import java.io.Serializable;
@@ -41,24 +41,7 @@ public class StringJsonUserType implements UserType {
 
         return x.hashCode();
     }
-    
-    @Override
-    public Object nullSafeGet(ResultSet rs, String[] names, SessionImplementor session, Object owner) throws HibernateException, SQLException {
-        if(rs.getString(names[0]) == null){
-            return null;
-        }
-        return rs.getString(names[0]);
-    }
-
-    @Override
-    public void nullSafeSet(PreparedStatement st, Object value, int index, SessionImplementor session) throws HibernateException, SQLException {
-        if (value == null) {
-            st.setNull(index, Types.OTHER);
-            return;
-        }
-
-        st.setObject(index, value, Types.OTHER);
-    }
+   
 
     @Override
     public Object deepCopy(Object value) throws HibernateException {
@@ -88,4 +71,18 @@ public class StringJsonUserType implements UserType {
     public Object replace(Object original, Object target, Object owner) throws HibernateException {
         return original;
     }
+
+	@Override
+	public Object nullSafeGet(ResultSet rs, String[] names, SharedSessionContractImplementor session, Object owner)
+			throws HibernateException, SQLException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void nullSafeSet(PreparedStatement st, Object value, int index, SharedSessionContractImplementor session)
+			throws HibernateException, SQLException {
+		// TODO Auto-generated method stub
+		
+	}
 }
