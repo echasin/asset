@@ -1,0 +1,4 @@
+id,name,nameshort,description,details,status,lastmodifiedby,lastmodifieddatetime,domain,assetrecordtype_id
+10000,NFTS,NFTS,National File Tracking System,"{""name"": ""NFTS""}",Active,echasin,1/1/2017 0:00,USCIS,20
+20000,CIS,CIS,Central Index System,"{""name"": ""CIS""}",Active,echasin,1/1/2017 0:00,USCIS,20
+30000,TRKS,TRKS,Transaction System,"{""name"": ""TRKS""}",Active,echasin,1/1/2017 0:00,USCIS,20
