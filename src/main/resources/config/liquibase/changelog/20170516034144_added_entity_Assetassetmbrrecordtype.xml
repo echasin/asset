@@ -14,31 +14,15 @@
     <property name="floatType" value="float" dbms="mysql, oracle, mssql"/>
 
     <!--
-        Added the entity Assetassetmbr.
+        Added the entity Assetassetmbrrecordtype.
     -->
-    <changeSet id="20170509033736-1" author="jhipster">
-        <createTable tableName="assetassetmbr">
+    <changeSet id="20170516034144-1" author="jhipster">
+        <createTable tableName="assetassetmbrrecordtype">
             <column name="id" type="bigint" autoIncrement="${autoIncrement}">
                 <constraints primaryKey="true" nullable="false"/>
             </column>
-            <column name="jhi_comment" type="varchar(100)">
-                <constraints nullable="true" />
-            </column>
-
-            <column name="xcoordinate" type="integer">
-                <constraints nullable="true" />
-            </column>
-
-            <column name="ycoordinate" type="integer">
-                <constraints nullable="true" />
-            </column>
-
-            <column name="parentinstance" type="varchar(100)">
-                <constraints nullable="true" />
-            </column>
-
-            <column name="childinstance" type="varchar(100)">
-                <constraints nullable="true" />
+            <column name="name" type="varchar(50)">
+                <constraints nullable="false" />
             </column>
 
             <column name="nameshort" type="varchar(20)">
@@ -65,25 +49,9 @@
                 <constraints nullable="true" />
             </column>
 
-            <column name="assetassetmbrrecordtype_id" type="bigint">
-                <constraints nullable="true" />
-            </column>
-
-            <column name="parentasset_id" type="bigint">
-                <constraints nullable="false" />
-            </column>
-
-            <column name="childasset_id" type="bigint">
-                <constraints nullable="false" />
-            </column>
-
-            <column name="model_id" type="bigint">
-                <constraints nullable="true" />
-            </column>
-
             <!-- jhipster-needle-liquibase-add-column - JHipster will add columns here, do not remove-->
         </createTable>
-        <dropDefaultValue tableName="assetassetmbr" columnName="lastmodifieddatetime" columnDataType="datetime"/>
+        <dropDefaultValue tableName="assetassetmbrrecordtype" columnName="lastmodifieddatetime" columnDataType="datetime"/>
         
     </changeSet>
 </databaseChangeLog>

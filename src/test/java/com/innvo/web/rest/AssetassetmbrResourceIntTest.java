@@ -5,7 +5,6 @@ import com.innvo.AssetApp;
 import com.innvo.domain.Assetassetmbr;
 import com.innvo.domain.Asset;
 import com.innvo.domain.Asset;
-import com.innvo.domain.Model;
 import com.innvo.repository.AssetassetmbrRepository;
 import com.innvo.repository.search.AssetassetmbrSearchRepository;
 import com.innvo.web.rest.errors.ExceptionTranslator;
@@ -140,11 +139,6 @@ public class AssetassetmbrResourceIntTest {
         em.persist(childasset);
         em.flush();
         assetassetmbr.setChildasset(childasset);
-        // Add required entity
-        Model model = ModelResourceIntTest.createEntity(em);
-        em.persist(model);
-        em.flush();
-        assetassetmbr.setModel(model);
         return assetassetmbr;
     }
 
