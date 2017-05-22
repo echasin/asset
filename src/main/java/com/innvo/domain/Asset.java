@@ -1,8 +1,13 @@
 package com.innvo.domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.innvo.json.StringJsonUserType;
+
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
+import org.hibernate.annotations.Type;
+import org.hibernate.annotations.TypeDef;
+import org.hibernate.annotations.TypeDefs;
 import org.springframework.data.elasticsearch.annotations.Document;
 
 import javax.persistence.*;
@@ -20,6 +25,7 @@ import java.util.Objects;
 @Table(name = "asset")
 @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
 @Document(indexName = "asset")
+@TypeDefs({@TypeDef(name = "StringJsonObject", typeClass = StringJsonUserType.class)})
 public class Asset implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -43,12 +49,16 @@ public class Asset implements Serializable {
     @Column(name = "description", length = 255)
     private String description;
 
+    @Column(name = "details")
+    @Type(type = "StringJsonObject")
+    private String details;
+
     @NotNull
     @Size(max = 25)
     @Column(name = "status", length = 25, nullable = false)
     private String status;
 
-    @NotNull
+    @NotNull 
     @Size(max = 50)
     @Column(name = "lastmodifiedby", length = 50, nullable = false)
     private String lastmodifiedby;
@@ -119,6 +129,19 @@ public class Asset implements Serializable {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public String getDetails() {
+        return details;
+    }
+
+    public Asset details(String details) {
+        this.details = details;
+        return this;
+    }
+
+    public void setDetails(String details) {
+        this.details = details;
     }
 
     public String getStatus() {
@@ -263,6 +286,7 @@ public class Asset implements Serializable {
             ", name='" + getName() + "'" +
             ", nameshort='" + getNameshort() + "'" +
             ", description='" + getDescription() + "'" +
+            ", details='" + getDetails() + "'" +
             ", status='" + getStatus() + "'" +
             ", lastmodifiedby='" + getLastmodifiedby() + "'" +
             ", lastmodifieddatetime='" + getLastmodifieddatetime() + "'" +

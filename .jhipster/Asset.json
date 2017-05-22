@@ -48,6 +48,10 @@
             "fieldValidateRulesMaxlength": "255"
         },
         {
+            "fieldName": "details",
+            "fieldType": "String"
+        },
+        {
             "fieldName": "status",
             "fieldType": "String",
             "fieldValidateRules": [

@@ -62,6 +62,8 @@ public class AssetResource {
         if (asset.getId() != null) {
             return ResponseEntity.badRequest().headers(HeaderUtil.createFailureAlert(ENTITY_NAME, "idexists", "A new asset cannot already have an ID")).body(null);
         }
+        System.out.println(asset); 
+        System.out.println(asset.getDetails());
         Asset result = assetRepository.save(asset);
         assetSearchRepository.save(result);
         return ResponseEntity.created(new URI("/api/assets/" + result.getId()))

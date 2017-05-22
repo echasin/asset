@@ -52,6 +52,9 @@ public class AssetResourceIntTest {
     private static final String DEFAULT_DESCRIPTION = "AAAAAAAAAA";
     private static final String UPDATED_DESCRIPTION = "BBBBBBBBBB";
 
+    private static final String DEFAULT_DETAILS = "AAAAAAAAAA";
+    private static final String UPDATED_DETAILS = "BBBBBBBBBB";
+
     private static final String DEFAULT_STATUS = "AAAAAAAAAA";
     private static final String UPDATED_STATUS = "BBBBBBBBBB";
 
@@ -107,6 +110,7 @@ public class AssetResourceIntTest {
             .name(DEFAULT_NAME)
             .nameshort(DEFAULT_NAMESHORT)
             .description(DEFAULT_DESCRIPTION)
+            .details(DEFAULT_DETAILS)
             .status(DEFAULT_STATUS)
             .lastmodifiedby(DEFAULT_LASTMODIFIEDBY)
             .lastmodifieddatetime(DEFAULT_LASTMODIFIEDDATETIME)
@@ -138,6 +142,7 @@ public class AssetResourceIntTest {
         assertThat(testAsset.getName()).isEqualTo(DEFAULT_NAME);
         assertThat(testAsset.getNameshort()).isEqualTo(DEFAULT_NAMESHORT);
         assertThat(testAsset.getDescription()).isEqualTo(DEFAULT_DESCRIPTION);
+        assertThat(testAsset.getDetails()).isEqualTo(DEFAULT_DETAILS);
         assertThat(testAsset.getStatus()).isEqualTo(DEFAULT_STATUS);
         assertThat(testAsset.getLastmodifiedby()).isEqualTo(DEFAULT_LASTMODIFIEDBY);
         assertThat(testAsset.getLastmodifieddatetime()).isEqualTo(DEFAULT_LASTMODIFIEDDATETIME);
@@ -271,6 +276,7 @@ public class AssetResourceIntTest {
             .andExpect(jsonPath("$.[*].name").value(hasItem(DEFAULT_NAME.toString())))
             .andExpect(jsonPath("$.[*].nameshort").value(hasItem(DEFAULT_NAMESHORT.toString())))
             .andExpect(jsonPath("$.[*].description").value(hasItem(DEFAULT_DESCRIPTION.toString())))
+            .andExpect(jsonPath("$.[*].details").value(hasItem(DEFAULT_DETAILS.toString())))
             .andExpect(jsonPath("$.[*].status").value(hasItem(DEFAULT_STATUS.toString())))
             .andExpect(jsonPath("$.[*].lastmodifiedby").value(hasItem(DEFAULT_LASTMODIFIEDBY.toString())))
             .andExpect(jsonPath("$.[*].lastmodifieddatetime").value(hasItem(sameInstant(DEFAULT_LASTMODIFIEDDATETIME))))
@@ -291,6 +297,7 @@ public class AssetResourceIntTest {
             .andExpect(jsonPath("$.name").value(DEFAULT_NAME.toString()))
             .andExpect(jsonPath("$.nameshort").value(DEFAULT_NAMESHORT.toString()))
             .andExpect(jsonPath("$.description").value(DEFAULT_DESCRIPTION.toString()))
+            .andExpect(jsonPath("$.details").value(DEFAULT_DETAILS.toString()))
             .andExpect(jsonPath("$.status").value(DEFAULT_STATUS.toString()))
             .andExpect(jsonPath("$.lastmodifiedby").value(DEFAULT_LASTMODIFIEDBY.toString()))
             .andExpect(jsonPath("$.lastmodifieddatetime").value(sameInstant(DEFAULT_LASTMODIFIEDDATETIME)))
@@ -319,6 +326,7 @@ public class AssetResourceIntTest {
             .name(UPDATED_NAME)
             .nameshort(UPDATED_NAMESHORT)
             .description(UPDATED_DESCRIPTION)
+            .details(UPDATED_DETAILS)
             .status(UPDATED_STATUS)
             .lastmodifiedby(UPDATED_LASTMODIFIEDBY)
             .lastmodifieddatetime(UPDATED_LASTMODIFIEDDATETIME)
@@ -336,6 +344,7 @@ public class AssetResourceIntTest {
         assertThat(testAsset.getName()).isEqualTo(UPDATED_NAME);
         assertThat(testAsset.getNameshort()).isEqualTo(UPDATED_NAMESHORT);
         assertThat(testAsset.getDescription()).isEqualTo(UPDATED_DESCRIPTION);
+        assertThat(testAsset.getDetails()).isEqualTo(UPDATED_DETAILS);
         assertThat(testAsset.getStatus()).isEqualTo(UPDATED_STATUS);
         assertThat(testAsset.getLastmodifiedby()).isEqualTo(UPDATED_LASTMODIFIEDBY);
         assertThat(testAsset.getLastmodifieddatetime()).isEqualTo(UPDATED_LASTMODIFIEDDATETIME);
@@ -401,6 +410,7 @@ public class AssetResourceIntTest {
             .andExpect(jsonPath("$.[*].name").value(hasItem(DEFAULT_NAME.toString())))
             .andExpect(jsonPath("$.[*].nameshort").value(hasItem(DEFAULT_NAMESHORT.toString())))
             .andExpect(jsonPath("$.[*].description").value(hasItem(DEFAULT_DESCRIPTION.toString())))
+            .andExpect(jsonPath("$.[*].details").value(hasItem(DEFAULT_DETAILS.toString())))
             .andExpect(jsonPath("$.[*].status").value(hasItem(DEFAULT_STATUS.toString())))
             .andExpect(jsonPath("$.[*].lastmodifiedby").value(hasItem(DEFAULT_LASTMODIFIEDBY.toString())))
             .andExpect(jsonPath("$.[*].lastmodifieddatetime").value(hasItem(sameInstant(DEFAULT_LASTMODIFIEDDATETIME))))

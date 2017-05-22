@@ -65,6 +65,10 @@
                 <constraints nullable="true" />
             </column>
 
+            <column name="assetassetmbrrecordtype_id" type="bigint">
+                <constraints nullable="true" />
+            </column>
+
             <column name="parentasset_id" type="bigint">
                 <constraints nullable="false" />
             </column>
@@ -74,7 +78,7 @@
             </column>
 
             <column name="model_id" type="bigint">
-                <constraints nullable="false" />
+                <constraints nullable="true" />
             </column>
 
             <!-- jhipster-needle-liquibase-add-column - JHipster will add columns here, do not remove-->
