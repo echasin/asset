@@ -25,11 +25,19 @@
                 <constraints nullable="true" />
             </column>
 
-            <column name="xcoordinate" type="integer">
+            <column name="parentxcoordinate" type="integer">
                 <constraints nullable="true" />
             </column>
 
-            <column name="ycoordinate" type="integer">
+            <column name="parentycoordinate" type="integer">
+                <constraints nullable="true" />
+            </column>
+            
+            <column name="childxcoordinate" type="integer">
+                <constraints nullable="true" />
+            </column>
+
+            <column name="childycoordinate" type="integer">
                 <constraints nullable="true" />
             </column>
 
@@ -58,7 +66,7 @@
             </column>
 
             <column name="lastmodifieddatetime" type="timestamp">
-                <constraints nullable="false" />
+                <constraints nullable="true" />
             </column>
 
             <column name="domain" type="varchar(25)">

@@ -11,5 +11,7 @@ import java.util.List;
  */
 @SuppressWarnings("unused")
 public interface AssetassetmbrRepository extends JpaRepository<Assetassetmbr,Long> {
+	
+	List<Assetassetmbr> findByModelId(long id);
 
 }

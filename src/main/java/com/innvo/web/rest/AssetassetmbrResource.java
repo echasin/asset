@@ -62,6 +62,14 @@ public class AssetassetmbrResource {
         if (assetassetmbr.getId() != null) {
             return ResponseEntity.badRequest().headers(HeaderUtil.createFailureAlert(ENTITY_NAME, "idexists", "A new assetassetmbr cannot already have an ID")).body(null);
         }
+        System.out.println("11111111111111111111111111111111111111111111111111111111");
+        System.out.println("11111111111111111111111111111111111111111111111111111111");
+        System.out.println("11111111111111111111111111111111111111111111111111111111");
+        System.out.println(assetassetmbr);
+        System.out.println("11111111111111111111111111111111111111111111111111111111");
+        System.out.println("11111111111111111111111111111111111111111111111111111111");
+        System.out.println("11111111111111111111111111111111111111111111111111111111");
+
         Assetassetmbr result = assetassetmbrRepository.save(assetassetmbr);
         assetassetmbrSearchRepository.save(result);
         return ResponseEntity.created(new URI("/api/assetassetmbrs/" + result.getId()))
@@ -153,5 +161,12 @@ public class AssetassetmbrResource {
         return new ResponseEntity<>(page.getContent(), headers, HttpStatus.OK);
     }
 
+    @GetMapping("/assetassetmbrbymodel/{id}")
+    @Timed
+    public ResponseEntity<List<Assetassetmbr>> getAllAssetassetmbrs(@PathVariable Long id) {
+        log.debug("REST request to get a page of Assetassetmbrs");
+        List<Assetassetmbr> list = assetassetmbrRepository.findByModelId(id);
+        return new ResponseEntity<>(list, HttpStatus.OK);
+    }
 
 }
