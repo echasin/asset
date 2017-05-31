@@ -167,6 +167,7 @@ dependencies {
         exclude(group: 'ch.qos.logback')
     }
     compile "com.fasterxml.jackson.datatype:jackson-datatype-json-org"
+    compile "com.esotericsoftware.yamlbeans:yamlbeans:${ymlversion}"
     compile "com.fasterxml.jackson.datatype:jackson-datatype-hppc"
     compile "com.fasterxml.jackson.datatype:jackson-datatype-jsr310"
     compile "com.fasterxml.jackson.datatype:jackson-datatype-hibernate5"

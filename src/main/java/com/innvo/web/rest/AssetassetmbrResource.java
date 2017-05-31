@@ -1,16 +1,21 @@
 package com.innvo.web.rest;
 
 import com.codahale.metrics.annotation.Timed;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.innvo.config.YMLService;
+import com.innvo.domain.Asset;
 import com.innvo.domain.Assetassetmbr;
-
+import com.innvo.repository.AssetRepository;
 import com.innvo.repository.AssetassetmbrRepository;
 import com.innvo.repository.search.AssetassetmbrSearchRepository;
+import com.innvo.web.rest.util.AssetassetUtil;
 import com.innvo.web.rest.util.HeaderUtil;
 import com.innvo.web.rest.util.PaginationUtil;
 import io.swagger.annotations.ApiParam;
 import io.github.jhipster.web.util.ResponseUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpHeaders;
@@ -19,13 +24,14 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+
+import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
-import java.util.stream.Collectors;
-import java.util.stream.StreamSupport;
-
 import static org.elasticsearch.index.query.QueryBuilders.*;
 
 /**
@@ -38,12 +44,22 @@ public class AssetassetmbrResource {
     private final Logger log = LoggerFactory.getLogger(AssetassetmbrResource.class);
 
     private static final String ENTITY_NAME = "assetassetmbr";
-        
-    private final AssetassetmbrRepository assetassetmbrRepository;
+     
+    @Autowired
+    AssetassetmbrRepository assetassetmbrRepository;
 
-    private final AssetassetmbrSearchRepository assetassetmbrSearchRepository;
+    @Autowired
+    AssetassetmbrSearchRepository assetassetmbrSearchRepository;
 
-    public AssetassetmbrResource(AssetassetmbrRepository assetassetmbrRepository, AssetassetmbrSearchRepository assetassetmbrSearchRepository) {
+    @Autowired
+    AssetRepository assetRepository;
+    
+    
+    public AssetassetmbrResource() {
+		super();
+	}
+
+	public AssetassetmbrResource(AssetassetmbrRepository assetassetmbrRepository, AssetassetmbrSearchRepository assetassetmbrSearchRepository) {
         this.assetassetmbrRepository = assetassetmbrRepository;
         this.assetassetmbrSearchRepository = assetassetmbrSearchRepository;
     }
@@ -161,12 +177,57 @@ public class AssetassetmbrResource {
         return new ResponseEntity<>(page.getContent(), headers, HttpStatus.OK);
     }
 
+    
+    /**
+     * 
+     * @param id
+     * @return
+     * @throws IOException 
+     * @throws IllegalArgumentException 
+     */
     @GetMapping("/assetassetmbrbymodel/{id}")
     @Timed
-    public ResponseEntity<List<Assetassetmbr>> getAllAssetassetmbrs(@PathVariable Long id) {
-        log.debug("REST request to get a page of Assetassetmbrs");
+    public List<AssetassetUtil> getAllAssetassetmbrs(@PathVariable Long id) throws IllegalArgumentException, IOException {
+        log.debug("REST request to get Assetassetmbrs by model");
+        YMLService  ymlService=new YMLService();
+	    ObjectMapper oMapper = new ObjectMapper();
+	    Map<String, Object> maps = oMapper.convertValue(ymlService.getData(), Map.class);
+	     
+        List<AssetassetUtil> assetassetUtils=new ArrayList<AssetassetUtil>();
         List<Assetassetmbr> list = assetassetmbrRepository.findByModelId(id);
-        return new ResponseEntity<>(list, HttpStatus.OK);
+        for(Assetassetmbr assetasset:list){
+            AssetassetUtil assetassetUtil=new AssetassetUtil();
+        	String parentColor = (String) maps.get(assetasset.getParentasset().getAssetrecordtype().getName());
+        	String childColor = (String) maps.get(assetasset.getChildasset().getAssetrecordtype().getName());
+        	assetassetUtil.setAssetassetmbr(assetasset);
+        	assetassetUtil.setParentcolor(parentColor);
+        	assetassetUtil.setChildcolor(childColor);
+        	assetassetUtils.add(assetassetUtil);	
+        }
+        return assetassetUtils;
     }
+    
+    
+    /**
+     * 
+     * @param id
+     * @return
+     * @throws IllegalArgumentException
+     * @throws IOException
+     */
+    @GetMapping("/getColor/{id}")
+    @Timed
+    public String getColor(@PathVariable Long id) throws IllegalArgumentException, IOException {
+    	
+    	 Asset asset= assetRepository.findOne(id);
+    	 YMLService  ymlService=new YMLService();
+	     ObjectMapper oMapper = new ObjectMapper();
+	     Map<String, Object> maps = oMapper.convertValue(ymlService.getData(), Map.class);
+	     System.out.println(maps);
+         String color = (String) maps.get(asset.getAssetrecordtype().getName());
+         System.out.println(color);
+         return color;
+    }
+
 
 }
