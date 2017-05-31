@@ -1,0 +1,3 @@
+"id";"comment";"parentxcoordinate";"parentycoordinate";"childxcoordinate";"childycoordinate";"parentinstance";"childinstance";"description";"status";"lastmodifiedby";"lastmodifieddatetime";"domain";"parentasset_id";"childasset_id";"model_id"
+10;"comment";100;50;20;130;"0eca947c-51e6-4508-90a3-60319a8ff7a7";"cc51e3fa-20c3-4c75-8407-d62bda4735d4";"";"active";"echasin";"05/30/2017 00:00:00";"DEV";10;20;10
+20;"comment";100;50;180;130;"0eca947c-51e6-4508-90a3-60319a8ff7a7";"ddb5c0f0-7390-43d5-81f9-57e7abd47ea6";"";"active";"ecgasin";"05/30/2017 00:00:00";"DEV";10;30;10

@@ -61,9 +61,6 @@ public class AssetassetmbrResourceIntTest {
     private static final String DEFAULT_CHILDINSTANCE = "AAAAAAAAAA";
     private static final String UPDATED_CHILDINSTANCE = "BBBBBBBBBB";
 
-    private static final String DEFAULT_NAMESHORT = "AAAAAAAAAA";
-    private static final String UPDATED_NAMESHORT = "BBBBBBBBBB";
-
     private static final String DEFAULT_DESCRIPTION = "AAAAAAAAAA";
     private static final String UPDATED_DESCRIPTION = "BBBBBBBBBB";
 
@@ -124,7 +121,6 @@ public class AssetassetmbrResourceIntTest {
             .ycoordinate(DEFAULT_YCOORDINATE)
             .parentinstance(DEFAULT_PARENTINSTANCE)
             .childinstance(DEFAULT_CHILDINSTANCE)
-            .nameshort(DEFAULT_NAMESHORT)
             .description(DEFAULT_DESCRIPTION)
             .status(DEFAULT_STATUS)
             .lastmodifiedby(DEFAULT_LASTMODIFIEDBY)
@@ -174,7 +170,6 @@ public class AssetassetmbrResourceIntTest {
         assertThat(testAssetassetmbr.getYcoordinate()).isEqualTo(DEFAULT_YCOORDINATE);
         assertThat(testAssetassetmbr.getParentinstance()).isEqualTo(DEFAULT_PARENTINSTANCE);
         assertThat(testAssetassetmbr.getChildinstance()).isEqualTo(DEFAULT_CHILDINSTANCE);
-        assertThat(testAssetassetmbr.getNameshort()).isEqualTo(DEFAULT_NAMESHORT);
         assertThat(testAssetassetmbr.getDescription()).isEqualTo(DEFAULT_DESCRIPTION);
         assertThat(testAssetassetmbr.getStatus()).isEqualTo(DEFAULT_STATUS);
         assertThat(testAssetassetmbr.getLastmodifiedby()).isEqualTo(DEFAULT_LASTMODIFIEDBY);
@@ -293,7 +288,6 @@ public class AssetassetmbrResourceIntTest {
             .andExpect(jsonPath("$.[*].ycoordinate").value(hasItem(DEFAULT_YCOORDINATE)))
             .andExpect(jsonPath("$.[*].parentinstance").value(hasItem(DEFAULT_PARENTINSTANCE.toString())))
             .andExpect(jsonPath("$.[*].childinstance").value(hasItem(DEFAULT_CHILDINSTANCE.toString())))
-            .andExpect(jsonPath("$.[*].nameshort").value(hasItem(DEFAULT_NAMESHORT.toString())))
             .andExpect(jsonPath("$.[*].description").value(hasItem(DEFAULT_DESCRIPTION.toString())))
             .andExpect(jsonPath("$.[*].status").value(hasItem(DEFAULT_STATUS.toString())))
             .andExpect(jsonPath("$.[*].lastmodifiedby").value(hasItem(DEFAULT_LASTMODIFIEDBY.toString())))
@@ -317,7 +311,6 @@ public class AssetassetmbrResourceIntTest {
             .andExpect(jsonPath("$.ycoordinate").value(DEFAULT_YCOORDINATE))
             .andExpect(jsonPath("$.parentinstance").value(DEFAULT_PARENTINSTANCE.toString()))
             .andExpect(jsonPath("$.childinstance").value(DEFAULT_CHILDINSTANCE.toString()))
-            .andExpect(jsonPath("$.nameshort").value(DEFAULT_NAMESHORT.toString()))
             .andExpect(jsonPath("$.description").value(DEFAULT_DESCRIPTION.toString()))
             .andExpect(jsonPath("$.status").value(DEFAULT_STATUS.toString()))
             .andExpect(jsonPath("$.lastmodifiedby").value(DEFAULT_LASTMODIFIEDBY.toString()))
@@ -349,7 +342,6 @@ public class AssetassetmbrResourceIntTest {
             .ycoordinate(UPDATED_YCOORDINATE)
             .parentinstance(UPDATED_PARENTINSTANCE)
             .childinstance(UPDATED_CHILDINSTANCE)
-            .nameshort(UPDATED_NAMESHORT)
             .description(UPDATED_DESCRIPTION)
             .status(UPDATED_STATUS)
             .lastmodifiedby(UPDATED_LASTMODIFIEDBY)
@@ -370,7 +362,6 @@ public class AssetassetmbrResourceIntTest {
         assertThat(testAssetassetmbr.getYcoordinate()).isEqualTo(UPDATED_YCOORDINATE);
         assertThat(testAssetassetmbr.getParentinstance()).isEqualTo(UPDATED_PARENTINSTANCE);
         assertThat(testAssetassetmbr.getChildinstance()).isEqualTo(UPDATED_CHILDINSTANCE);
-        assertThat(testAssetassetmbr.getNameshort()).isEqualTo(UPDATED_NAMESHORT);
         assertThat(testAssetassetmbr.getDescription()).isEqualTo(UPDATED_DESCRIPTION);
         assertThat(testAssetassetmbr.getStatus()).isEqualTo(UPDATED_STATUS);
         assertThat(testAssetassetmbr.getLastmodifiedby()).isEqualTo(UPDATED_LASTMODIFIEDBY);
@@ -439,7 +430,6 @@ public class AssetassetmbrResourceIntTest {
             .andExpect(jsonPath("$.[*].ycoordinate").value(hasItem(DEFAULT_YCOORDINATE)))
             .andExpect(jsonPath("$.[*].parentinstance").value(hasItem(DEFAULT_PARENTINSTANCE.toString())))
             .andExpect(jsonPath("$.[*].childinstance").value(hasItem(DEFAULT_CHILDINSTANCE.toString())))
-            .andExpect(jsonPath("$.[*].nameshort").value(hasItem(DEFAULT_NAMESHORT.toString())))
             .andExpect(jsonPath("$.[*].description").value(hasItem(DEFAULT_DESCRIPTION.toString())))
             .andExpect(jsonPath("$.[*].status").value(hasItem(DEFAULT_STATUS.toString())))
             .andExpect(jsonPath("$.[*].lastmodifiedby").value(hasItem(DEFAULT_LASTMODIFIEDBY.toString())))

@@ -1,0 +1,3 @@
+id;name;nameshort;description;status;lastmodifiedby;lastmodifieddatetime;domain
+10;Report;Report;"Reports include error;user;and monitoring";Active;echasin;2017-01-01 00:00:00;DEV
+20;System;System;A system is a collection of assets;Active;echasin;2017-01-01 00:00:00;DEV

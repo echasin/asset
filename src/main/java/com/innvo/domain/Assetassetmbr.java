@@ -27,7 +27,7 @@ public class Assetassetmbr implements Serializable {
     private Long id;
 
     @Size(max = 100)
-    @Column(name = "jhi_comment", length = 100)
+    @Column(name = "comment", length = 100)
     private String comment;
 
     @Column(name = "parentxcoordinate")
@@ -50,11 +50,6 @@ public class Assetassetmbr implements Serializable {
     @Size(max = 100)
     @Column(name = "childinstance", length = 100)
     private String childinstance;
-
-    @NotNull
-    @Size(max = 20)
-    @Column(name = "nameshort", length = 20, nullable = false)
-    private String nameshort;
 
     @Size(max = 255)
     @Column(name = "description", length = 255)

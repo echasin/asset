@@ -1,0 +1,4 @@
+id;name;nameshort;description;details;status;lastmodifiedby;lastmodifieddatetime;domain;assetrecordtype_id
+10;A;A;System A;"{"name": "A"}";Active;echasin;1/1/2017 0:00;DEV;20
+20;B;B;System B;"{"name": "B"}";Active;echasin;1/1/2017 0:00;DEV;20
+30;C;C;System C;"{"name": "C"}";Active;echasin;1/1/2017 0:00;DEV;20

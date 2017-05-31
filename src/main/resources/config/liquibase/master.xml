@@ -17,7 +17,9 @@
     <!-- jhipster-needle-liquibase-add-constraints-changelog - JHipster will add liquibase constraints changelogs here -->
 
 	<!-- DATA LOADING FILES -->
-	<include relativeToChangelogFile="false" file="classpath:config/liquibase/changelog/load_apprefactory_reference_data.xml"/>
-	<include relativeToChangelogFile="false" file="classpath:config/liquibase/changelog/load_apprefactory_USCIS_data.xml"/>
-
+	<include relativeToChangelogFile="false" file="classpath:config/data/load_apprefactory_reference_data.xml"/>
+	<include relativeToChangelogFile="false" file="classpath:config/data/load_apprefactory_testcases.xml"/>
+	<!-- 
+	<include relativeToChangelogFile="false" file="classpath:config/data/load_apprefactory_USCIS_data.xml"/>
+    -->
 </databaseChangeLog>
