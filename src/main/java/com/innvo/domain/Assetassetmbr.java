@@ -165,19 +165,6 @@ public class Assetassetmbr implements Serializable {
         this.childinstance = childinstance;
     }
 
-    public String getNameshort() {
-        return nameshort;
-    }
-
-    public Assetassetmbr nameshort(String nameshort) {
-        this.nameshort = nameshort;
-        return this;
-    }
-
-    public void setNameshort(String nameshort) {
-        this.nameshort = nameshort;
-    }
-
     public String getDescription() {
         return description;
     }
@@ -307,7 +294,7 @@ public class Assetassetmbr implements Serializable {
 		return "Assetassetmbr [id=" + id + ", comment=" + comment + ", parentxcoordinate=" + parentxcoordinate
 				+ ", parentycoordinate=" + parentycoordinate + ", childxcoordinate=" + childxcoordinate
 				+ ", childycoordinate=" + childycoordinate + ", parentinstance=" + parentinstance + ", childinstance="
-				+ childinstance + ", nameshort=" + nameshort + ", description=" + description + ", status=" + status
+				+ childinstance + ", description=" + description + ", status=" + status
 				+ ", lastmodifiedby=" + lastmodifiedby + ", lastmodifieddatetime=" + lastmodifieddatetime + ", domain="
 				+ domain + ", parentasset=" + parentasset + ", childasset=" + childasset + ", model=" + model + "]";
 	}
