@@ -21,6 +21,9 @@ eureka:
             defaultZone: http://admin:${jhipster.registry.password}@localhost:8761/eureka/
 
 spring:
+    profiles:
+        active: dev
+        include: swagger
     devtools:
         restart:
             enabled: false
@@ -28,7 +31,7 @@ spring:
             enabled: false
     datasource:
         type: com.zaxxer.hikari.HikariDataSource
-        url: jdbc:postgresql://localhost:5432/AFRPROD
+        url: jdbc:postgresql://localhost:5432/ARFPROD
         username: postgres
         password: postgres
     jpa:
