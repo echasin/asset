@@ -5,12 +5,14 @@ import com.innvo.domain.Modelrecordtype;
 
 import com.innvo.repository.ModelrecordtypeRepository;
 import com.innvo.repository.search.ModelrecordtypeSearchRepository;
+import com.innvo.service.DomainService;
 import com.innvo.web.rest.util.HeaderUtil;
 import com.innvo.web.rest.util.PaginationUtil;
 import io.swagger.annotations.ApiParam;
 import io.github.jhipster.web.util.ResponseUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpHeaders;
@@ -22,6 +24,8 @@ import javax.validation.Valid;
 import java.net.URI;
 import java.net.URISyntaxException;
 
+import java.time.ZoneId;
+import java.time.ZonedDateTime;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -44,6 +48,9 @@ public class ModelrecordtypeResource {
 
     private final ModelrecordtypeSearchRepository modelrecordtypeSearchRepository;
 
+    @Autowired
+    DomainService domainService;
+    
     public ModelrecordtypeResource(ModelrecordtypeRepository modelrecordtypeRepository, ModelrecordtypeSearchRepository modelrecordtypeSearchRepository) {
         this.modelrecordtypeRepository = modelrecordtypeRepository;
         this.modelrecordtypeSearchRepository = modelrecordtypeSearchRepository;
@@ -63,6 +70,9 @@ public class ModelrecordtypeResource {
         if (modelrecordtype.getId() != null) {
             return ResponseEntity.badRequest().headers(HeaderUtil.createFailureAlert(ENTITY_NAME, "idexists", "A new modelrecordtype cannot already have an ID")).body(null);
         }
+        ZonedDateTime lastmodifieddate = ZonedDateTime.now(ZoneId.systemDefault());
+        modelrecordtype.setLastmodifieddatetime(lastmodifieddate);
+        modelrecordtype.setDomain(domainService.getDomain());
         Modelrecordtype result = modelrecordtypeRepository.save(modelrecordtype);
         modelrecordtypeSearchRepository.save(result);
         return ResponseEntity.created(new URI("/api/modelrecordtypes/" + result.getId()))
@@ -86,6 +96,9 @@ public class ModelrecordtypeResource {
         if (modelrecordtype.getId() == null) {
             return createModelrecordtype(modelrecordtype);
         }
+        ZonedDateTime lastmodifieddate = ZonedDateTime.now(ZoneId.systemDefault());
+        modelrecordtype.setLastmodifieddatetime(lastmodifieddate);
+        modelrecordtype.setDomain(domainService.getDomain());
         Modelrecordtype result = modelrecordtypeRepository.save(modelrecordtype);
         modelrecordtypeSearchRepository.save(result);
         return ResponseEntity.ok()
