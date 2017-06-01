@@ -70,6 +70,9 @@ public class Assetassetmbr implements Serializable {
     @Column(name = "domain", length = 25)
     private String domain;
 
+    @ManyToOne
+    private Assetassetmbrrecordtype assetassetmbrrecordtype;
+
     @ManyToOne(optional = false)
     @NotNull
     private Asset parentasset;
@@ -78,8 +81,7 @@ public class Assetassetmbr implements Serializable {
     @NotNull
     private Asset childasset;
 
-    @ManyToOne(optional = false)
-    @NotNull
+    @ManyToOne
     private Model model;
 
     public Long getId() {
@@ -226,6 +228,19 @@ public class Assetassetmbr implements Serializable {
 
     public void setDomain(String domain) {
         this.domain = domain;
+    }
+
+    public Assetassetmbrrecordtype getAssetassetmbrrecordtype() {
+        return assetassetmbrrecordtype;
+    }
+
+    public Assetassetmbr assetassetmbrrecordtype(Assetassetmbrrecordtype assetassetmbrrecordtype) {
+        this.assetassetmbrrecordtype = assetassetmbrrecordtype;
+        return this;
+    }
+
+    public void setAssetassetmbrrecordtype(Assetassetmbrrecordtype assetassetmbrrecordtype) {
+        this.assetassetmbrrecordtype = assetassetmbrrecordtype;
     }
 
     public Asset getParentasset() {
