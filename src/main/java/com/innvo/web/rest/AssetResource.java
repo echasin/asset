@@ -5,12 +5,14 @@ import com.innvo.domain.Asset;
 
 import com.innvo.repository.AssetRepository;
 import com.innvo.repository.search.AssetSearchRepository;
+import com.innvo.service.DomainService;
 import com.innvo.web.rest.util.HeaderUtil;
 import com.innvo.web.rest.util.PaginationUtil;
 import io.swagger.annotations.ApiParam;
 import io.github.jhipster.web.util.ResponseUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpHeaders;
@@ -42,6 +44,9 @@ public class AssetResource {
     private final AssetRepository assetRepository;
 
     private final AssetSearchRepository assetSearchRepository;
+    
+    @Autowired
+    DomainService domainService;
 
     public AssetResource(AssetRepository assetRepository, AssetSearchRepository assetSearchRepository) {
         this.assetRepository = assetRepository;
@@ -62,8 +67,7 @@ public class AssetResource {
         if (asset.getId() != null) {
             return ResponseEntity.badRequest().headers(HeaderUtil.createFailureAlert(ENTITY_NAME, "idexists", "A new asset cannot already have an ID")).body(null);
         }
-        System.out.println(asset); 
-        System.out.println(asset.getDetails());
+        asset.setDomain(domainService.getDomain());
         Asset result = assetRepository.save(asset);
         assetSearchRepository.save(result);
         return ResponseEntity.created(new URI("/api/assets/" + result.getId()))
@@ -87,6 +91,7 @@ public class AssetResource {
         if (asset.getId() == null) {
             return createAsset(asset);
         }
+        asset.setDomain(domainService.getDomain());
         Asset result = assetRepository.save(asset);
         assetSearchRepository.save(result);
         return ResponseEntity.ok()

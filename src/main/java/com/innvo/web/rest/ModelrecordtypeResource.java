@@ -5,12 +5,14 @@ import com.innvo.domain.Modelrecordtype;
 
 import com.innvo.repository.ModelrecordtypeRepository;
 import com.innvo.repository.search.ModelrecordtypeSearchRepository;
+import com.innvo.service.DomainService;
 import com.innvo.web.rest.util.HeaderUtil;
 import com.innvo.web.rest.util.PaginationUtil;
 import io.swagger.annotations.ApiParam;
 import io.github.jhipster.web.util.ResponseUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpHeaders;
@@ -43,6 +45,9 @@ public class ModelrecordtypeResource {
 
     private final ModelrecordtypeSearchRepository modelrecordtypeSearchRepository;
 
+    @Autowired
+    DomainService domainService;
+    
     public ModelrecordtypeResource(ModelrecordtypeRepository modelrecordtypeRepository, ModelrecordtypeSearchRepository modelrecordtypeSearchRepository) {
         this.modelrecordtypeRepository = modelrecordtypeRepository;
         this.modelrecordtypeSearchRepository = modelrecordtypeSearchRepository;
@@ -62,6 +67,7 @@ public class ModelrecordtypeResource {
         if (modelrecordtype.getId() != null) {
             return ResponseEntity.badRequest().headers(HeaderUtil.createFailureAlert(ENTITY_NAME, "idexists", "A new modelrecordtype cannot already have an ID")).body(null);
         }
+        modelrecordtype.setDomain(domainService.getDomain());
         Modelrecordtype result = modelrecordtypeRepository.save(modelrecordtype);
         modelrecordtypeSearchRepository.save(result);
         return ResponseEntity.created(new URI("/api/modelrecordtypes/" + result.getId()))
@@ -85,6 +91,7 @@ public class ModelrecordtypeResource {
         if (modelrecordtype.getId() == null) {
             return createModelrecordtype(modelrecordtype);
         }
+        modelrecordtype.setDomain(domainService.getDomain());
         Modelrecordtype result = modelrecordtypeRepository.save(modelrecordtype);
         modelrecordtypeSearchRepository.save(result);
         return ResponseEntity.ok()

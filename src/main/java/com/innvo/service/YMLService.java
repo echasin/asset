@@ -1,4 +1,4 @@
-package com.innvo.config;
+package com.innvo.service;
 
 import java.io.FileReader;
 import java.io.IOException;

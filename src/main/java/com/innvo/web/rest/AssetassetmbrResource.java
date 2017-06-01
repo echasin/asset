@@ -2,12 +2,13 @@ package com.innvo.web.rest;
 
 import com.codahale.metrics.annotation.Timed;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.innvo.config.YMLService;
+import com.innvo.service.DomainService;
 import com.innvo.domain.Asset;
 import com.innvo.domain.Assetassetmbr;
 import com.innvo.repository.AssetRepository;
 import com.innvo.repository.AssetassetmbrRepository;
 import com.innvo.repository.search.AssetassetmbrSearchRepository;
+import com.innvo.service.YMLService;
 import com.innvo.web.rest.util.AssetassetUtil;
 import com.innvo.web.rest.util.HeaderUtil;
 import com.innvo.web.rest.util.PaginationUtil;
@@ -54,6 +55,9 @@ public class AssetassetmbrResource {
     @Autowired
     AssetRepository assetRepository;
     
+    @Autowired
+    DomainService domainService;
+    
     
     public AssetassetmbrResource() {
 		super();
@@ -78,14 +82,7 @@ public class AssetassetmbrResource {
         if (assetassetmbr.getId() != null) {
             return ResponseEntity.badRequest().headers(HeaderUtil.createFailureAlert(ENTITY_NAME, "idexists", "A new assetassetmbr cannot already have an ID")).body(null);
         }
-        System.out.println("11111111111111111111111111111111111111111111111111111111");
-        System.out.println("11111111111111111111111111111111111111111111111111111111");
-        System.out.println("11111111111111111111111111111111111111111111111111111111");
-        System.out.println(assetassetmbr);
-        System.out.println("11111111111111111111111111111111111111111111111111111111");
-        System.out.println("11111111111111111111111111111111111111111111111111111111");
-        System.out.println("11111111111111111111111111111111111111111111111111111111");
-
+        assetassetmbr.setDomain(domainService.getDomain());
         Assetassetmbr result = assetassetmbrRepository.save(assetassetmbr);
         assetassetmbrSearchRepository.save(result);
         return ResponseEntity.created(new URI("/api/assetassetmbrs/" + result.getId()))
@@ -109,6 +106,7 @@ public class AssetassetmbrResource {
         if (assetassetmbr.getId() == null) {
             return createAssetassetmbr(assetassetmbr);
         }
+        assetassetmbr.setDomain(domainService.getDomain());
         Assetassetmbr result = assetassetmbrRepository.save(assetassetmbr);
         assetassetmbrSearchRepository.save(result);
         return ResponseEntity.ok()
