@@ -23,6 +23,8 @@ import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.time.ZoneId;
+import java.time.ZonedDateTime;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -67,6 +69,8 @@ public class AssetResource {
         if (asset.getId() != null) {
             return ResponseEntity.badRequest().headers(HeaderUtil.createFailureAlert(ENTITY_NAME, "idexists", "A new asset cannot already have an ID")).body(null);
         }
+        ZonedDateTime lastmodifieddate = ZonedDateTime.now(ZoneId.systemDefault());
+        asset.setLastmodifieddatetime(lastmodifieddate);
         asset.setDomain(domainService.getDomain());
         Asset result = assetRepository.save(asset);
         assetSearchRepository.save(result);
@@ -91,6 +95,8 @@ public class AssetResource {
         if (asset.getId() == null) {
             return createAsset(asset);
         }
+        ZonedDateTime lastmodifieddate = ZonedDateTime.now(ZoneId.systemDefault());
+        asset.setLastmodifieddatetime(lastmodifieddate);
         asset.setDomain(domainService.getDomain());
         Asset result = assetRepository.save(asset);
         assetSearchRepository.save(result);

@@ -29,7 +29,10 @@ import javax.validation.Valid;
 import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.time.ZoneId;
+import java.time.ZonedDateTime;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
@@ -82,6 +85,8 @@ public class AssetassetmbrResource {
         if (assetassetmbr.getId() != null) {
             return ResponseEntity.badRequest().headers(HeaderUtil.createFailureAlert(ENTITY_NAME, "idexists", "A new assetassetmbr cannot already have an ID")).body(null);
         }
+        ZonedDateTime lastmodifieddate = ZonedDateTime.now(ZoneId.systemDefault());
+        assetassetmbr.setLastmodifieddatetime(lastmodifieddate);
         assetassetmbr.setDomain(domainService.getDomain());
         Assetassetmbr result = assetassetmbrRepository.save(assetassetmbr);
         assetassetmbrSearchRepository.save(result);
@@ -106,6 +111,8 @@ public class AssetassetmbrResource {
         if (assetassetmbr.getId() == null) {
             return createAssetassetmbr(assetassetmbr);
         }
+        ZonedDateTime lastmodifieddate = ZonedDateTime.now(ZoneId.systemDefault());
+        assetassetmbr.setLastmodifieddatetime(lastmodifieddate);
         assetassetmbr.setDomain(domainService.getDomain());
         Assetassetmbr result = assetassetmbrRepository.save(assetassetmbr);
         assetassetmbrSearchRepository.save(result);

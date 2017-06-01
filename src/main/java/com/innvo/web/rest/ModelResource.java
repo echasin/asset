@@ -23,6 +23,8 @@ import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.time.ZoneId;
+import java.time.ZonedDateTime;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -67,6 +69,8 @@ public class ModelResource {
         if (model.getId() != null) {
             return ResponseEntity.badRequest().headers(HeaderUtil.createFailureAlert(ENTITY_NAME, "idexists", "A new model cannot already have an ID")).body(null);
         }
+        ZonedDateTime lastmodifieddate = ZonedDateTime.now(ZoneId.systemDefault());
+        model.setLastmodifieddatetime(lastmodifieddate);
         model.setDomain(domainService.getDomain());
         Model result = modelRepository.save(model);
         modelSearchRepository.save(result);
@@ -91,6 +95,8 @@ public class ModelResource {
         if (model.getId() == null) {
             return createModel(model);
         }
+        ZonedDateTime lastmodifieddate = ZonedDateTime.now(ZoneId.systemDefault());
+        model.setLastmodifieddatetime(lastmodifieddate);
         model.setDomain(domainService.getDomain());
         Model result = modelRepository.save(model);
         modelSearchRepository.save(result);
