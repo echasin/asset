@@ -19,8 +19,13 @@
 	<changeSet id="load_apprefactory_reference_data" author="jhipster">
 	
 		<loadData encoding="UTF-8"
-			file="config/liquibase/apprefactory_assetrecordtype.csv" separator=","
+			file="config/data/apprefactory_assetrecordtype.csv" separator=";,"
 			tableName="assetrecordtype" />
+		
+		<loadData encoding="UTF-8"
+			file="config/data/apprefactory_modelrecordtype.csv" separator=";"
+			tableName="modelrecordtype" />
+					
 					
 	</changeSet>
 

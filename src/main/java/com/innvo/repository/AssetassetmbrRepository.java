@@ -12,5 +12,7 @@ import org.springframework.data.jpa.repository.*;
 @SuppressWarnings("unused")
 @Repository
 public interface AssetassetmbrRepository extends JpaRepository<Assetassetmbr,Long> {
+	
+	List<Assetassetmbr> findByModelId(long id);
 
 }

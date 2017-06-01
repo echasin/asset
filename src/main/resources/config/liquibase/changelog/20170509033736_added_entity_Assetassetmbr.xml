@@ -21,15 +21,23 @@
             <column name="id" type="bigint" autoIncrement="${autoIncrement}">
                 <constraints primaryKey="true" nullable="false"/>
             </column>
-            <column name="jhi_comment" type="varchar(100)">
+            <column name="comment" type="varchar(100)">
                 <constraints nullable="true" />
             </column>
 
-            <column name="xcoordinate" type="integer">
+            <column name="parentxcoordinate" type="integer">
                 <constraints nullable="true" />
             </column>
 
-            <column name="ycoordinate" type="integer">
+            <column name="parentycoordinate" type="integer">
+                <constraints nullable="true" />
+            </column>
+            
+            <column name="childxcoordinate" type="integer">
+                <constraints nullable="true" />
+            </column>
+
+            <column name="childycoordinate" type="integer">
                 <constraints nullable="true" />
             </column>
 
@@ -39,10 +47,6 @@
 
             <column name="childinstance" type="varchar(100)">
                 <constraints nullable="true" />
-            </column>
-
-            <column name="nameshort" type="varchar(20)">
-                <constraints nullable="false" />
             </column>
 
             <column name="description" type="varchar(255)">
@@ -58,7 +62,7 @@
             </column>
 
             <column name="lastmodifieddatetime" type="timestamp">
-                <constraints nullable="false" />
+                <constraints nullable="true" />
             </column>
 
             <column name="domain" type="varchar(25)">
