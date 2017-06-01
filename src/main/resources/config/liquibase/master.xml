@@ -11,10 +11,13 @@
     <include file="classpath:config/liquibase/changelog/20170509034144_added_entity_Assetrecordtype.xml" relativeToChangelogFile="false"/>
     <include file="classpath:config/liquibase/changelog/20170510004503_added_entity_Modelrecordtype.xml" relativeToChangelogFile="false"/>
     <include file="classpath:config/liquibase/changelog/20170516034144_added_entity_Assetassetmbrrecordtype.xml" relativeToChangelogFile="false"/>
+    <include file="classpath:config/liquibase/changelog/20170531213757_added_entity_Assetjson.xml" relativeToChangelogFile="false"/>
+    
     <!-- jhipster-needle-liquibase-add-changelog - JHipster will add liquibase changelogs here -->
     <include file="classpath:config/liquibase/changelog/20170509033616_added_entity_constraints_Asset.xml" relativeToChangelogFile="false"/>
     <include file="classpath:config/liquibase/changelog/20170509033736_added_entity_constraints_Assetassetmbr.xml" relativeToChangelogFile="false"/> 
     <include file="classpath:config/liquibase/changelog/20170509034044_added_entity_constraints_Model.xml" relativeToChangelogFile="false"/>
+    <include file="classpath:config/liquibase/changelog/20170531213757_added_entity_constraints_Assetjson.xml" relativeToChangelogFile="false"/>
     <!-- jhipster-needle-liquibase-add-constraints-changelog - JHipster will add liquibase constraints changelogs here -->
 
 	<!-- DATA LOADING FILES -->
