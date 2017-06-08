@@ -1,16 +1,16 @@
 package com.innvo.repository;
 
-import com.innvo.domain.Asset;
+import com.innvo.domain.Assetjson;
 import org.springframework.stereotype.Repository;
 
 import org.springframework.data.jpa.repository.*;
 
 
 /**
- * Spring Data JPA repository for the Asset entity.
+ * Spring Data JPA repository for the Assetjson entity.
  */
 @SuppressWarnings("unused")
 @Repository
-public interface AssetRepository extends JpaRepository<Asset,Long> {
+public interface AssetjsonRepository extends JpaRepository<Assetjson,Long> {
 
 }

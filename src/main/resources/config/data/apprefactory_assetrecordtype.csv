@@ -1,0 +1,6 @@
+id;name;nameshort;description;status;lastmodifiedby;lastmodifieddatetime;domain
+10;Report;Report;"Reports include error;user;and monitoring";Active;echasin;2017-01-01 00:00:00;DEV
+20;System;System;A system is a collection of assets;Active;echasin;2017-01-01 00:00:00;DEV
+30;Record Type;Record Type;A Record Type is a data defintion typically used in COBOL systems;Active;echasin;2017-01-01 00:00:00;DEV
+40;Table;Table;A Table is a data defintion typically used in RDMS;Active;echasin;2017-01-01 00:00:00;DEV
+50;Page;Page;A Page is User Interface Component;Active;echasin;2017-01-01 00:00:00;DEV

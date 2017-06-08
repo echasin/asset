@@ -1,26 +1,24 @@
 package com.innvo.domain;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
+import org.hibernate.annotations.Type;
 import org.springframework.data.elasticsearch.annotations.Document;
 
 import javax.persistence.*;
 import javax.validation.constraints.*;
 import java.io.Serializable;
 import java.time.ZonedDateTime;
-import java.util.HashSet;
-import java.util.Set;
 import java.util.Objects;
 
 /**
- * A Modelrecordtype.
+ * A Assetjson.
  */
 @Entity
-@Table(name = "modelrecordtype")
+@Table(name = "assetjson")
 @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
-@Document(indexName = "modelrecordtype")
-public class Modelrecordtype implements Serializable {
+@Document(indexName = "assetjson")
+public class Assetjson implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
@@ -29,42 +27,38 @@ public class Modelrecordtype implements Serializable {
     @SequenceGenerator(name = "sequenceGenerator")
     private Long id;
 
-    @NotNull
     @Size(max = 50)
-    @Column(name = "name", length = 50, nullable = false)
-    private String name;
+    @Column(name = "arrayname", length = 50)
+    private String arrayname;
 
-    @NotNull
     @Size(max = 20)
-    @Column(name = "nameshort", length = 20, nullable = false)
-    private String nameshort;
+    @Column(name = "arraynameshort", length = 20)
+    private String arraynameshort;
 
     @Size(max = 255)
     @Column(name = "description", length = 255)
     private String description;
 
-    
-    @Size(max = 25)
-    @Column(name = "status", length = 25)
-    private String status;
+    @Column(name = "details")
+    @Type(type = "StringJsonObject")
+    private String details;
 
-    
+    @NotNull
     @Size(max = 50)
-    @Column(name = "lastmodifiedby", length = 50)
+    @Column(name = "lastmodifiedby", length = 50, nullable = false)
     private String lastmodifiedby;
 
-    
-    @Column(name = "lastmodifieddatetime")
+    @NotNull
+    @Column(name = "lastmodifieddatetime", nullable = false)
     private ZonedDateTime lastmodifieddatetime;
 
-    @Size(max = 25)
-    @Column(name = "domain", length = 25)
+    @NotNull
+    @Size(max = 50)
+    @Column(name = "domain", length = 50, nullable = false)
     private String domain;
 
-    @OneToMany(mappedBy = "modelrecordtype")
-    @JsonIgnore
-    @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
-    private Set<Model> models = new HashSet<>();
+    @ManyToOne
+    private Asset asset;
 
     public Long getId() {
         return id;
@@ -74,37 +68,37 @@ public class Modelrecordtype implements Serializable {
         this.id = id;
     }
 
-    public String getName() {
-        return name;
+    public String getArrayname() {
+        return arrayname;
     }
 
-    public Modelrecordtype name(String name) {
-        this.name = name;
+    public Assetjson arrayname(String arrayname) {
+        this.arrayname = arrayname;
         return this;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setArrayname(String arrayname) {
+        this.arrayname = arrayname;
     }
 
-    public String getNameshort() {
-        return nameshort;
+    public String getArraynameshort() {
+        return arraynameshort;
     }
 
-    public Modelrecordtype nameshort(String nameshort) {
-        this.nameshort = nameshort;
+    public Assetjson arraynameshort(String arraynameshort) {
+        this.arraynameshort = arraynameshort;
         return this;
     }
 
-    public void setNameshort(String nameshort) {
-        this.nameshort = nameshort;
+    public void setArraynameshort(String arraynameshort) {
+        this.arraynameshort = arraynameshort;
     }
 
     public String getDescription() {
         return description;
     }
 
-    public Modelrecordtype description(String description) {
+    public Assetjson description(String description) {
         this.description = description;
         return this;
     }
@@ -113,24 +107,24 @@ public class Modelrecordtype implements Serializable {
         this.description = description;
     }
 
-    public String getStatus() {
-        return status;
+    public String getDetails() {
+        return details;
     }
 
-    public Modelrecordtype status(String status) {
-        this.status = status;
+    public Assetjson details(String details) {
+        this.details = details;
         return this;
     }
 
-    public void setStatus(String status) {
-        this.status = status;
+    public void setDetails(String details) {
+        this.details = details;
     }
 
     public String getLastmodifiedby() {
         return lastmodifiedby;
     }
 
-    public Modelrecordtype lastmodifiedby(String lastmodifiedby) {
+    public Assetjson lastmodifiedby(String lastmodifiedby) {
         this.lastmodifiedby = lastmodifiedby;
         return this;
     }
@@ -143,7 +137,7 @@ public class Modelrecordtype implements Serializable {
         return lastmodifieddatetime;
     }
 
-    public Modelrecordtype lastmodifieddatetime(ZonedDateTime lastmodifieddatetime) {
+    public Assetjson lastmodifieddatetime(ZonedDateTime lastmodifieddatetime) {
         this.lastmodifieddatetime = lastmodifieddatetime;
         return this;
     }
@@ -156,7 +150,7 @@ public class Modelrecordtype implements Serializable {
         return domain;
     }
 
-    public Modelrecordtype domain(String domain) {
+    public Assetjson domain(String domain) {
         this.domain = domain;
         return this;
     }
@@ -165,29 +159,17 @@ public class Modelrecordtype implements Serializable {
         this.domain = domain;
     }
 
-    public Set<Model> getModels() {
-        return models;
+    public Asset getAsset() {
+        return asset;
     }
 
-    public Modelrecordtype models(Set<Model> models) {
-        this.models = models;
+    public Assetjson asset(Asset asset) {
+        this.asset = asset;
         return this;
     }
 
-    public Modelrecordtype addModel(Model model) {
-        this.models.add(model);
-        model.setModelrecordtype(this);
-        return this;
-    }
-
-    public Modelrecordtype removeModel(Model model) {
-        this.models.remove(model);
-        model.setModelrecordtype(null);
-        return this;
-    }
-
-    public void setModels(Set<Model> models) {
-        this.models = models;
+    public void setAsset(Asset asset) {
+        this.asset = asset;
     }
 
     @Override
@@ -198,11 +180,11 @@ public class Modelrecordtype implements Serializable {
         if (o == null || getClass() != o.getClass()) {
             return false;
         }
-        Modelrecordtype modelrecordtype = (Modelrecordtype) o;
-        if (modelrecordtype.getId() == null || getId() == null) {
+        Assetjson assetjson = (Assetjson) o;
+        if (assetjson.getId() == null || getId() == null) {
             return false;
         }
-        return Objects.equals(getId(), modelrecordtype.getId());
+        return Objects.equals(getId(), assetjson.getId());
     }
 
     @Override
@@ -212,12 +194,12 @@ public class Modelrecordtype implements Serializable {
 
     @Override
     public String toString() {
-        return "Modelrecordtype{" +
+        return "Assetjson{" +
             "id=" + getId() +
-            ", name='" + getName() + "'" +
-            ", nameshort='" + getNameshort() + "'" +
+            ", arrayname='" + getArrayname() + "'" +
+            ", arraynameshort='" + getArraynameshort() + "'" +
             ", description='" + getDescription() + "'" +
-            ", status='" + getStatus() + "'" +
+            ", details='" + getDetails() + "'" +
             ", lastmodifiedby='" + getLastmodifiedby() + "'" +
             ", lastmodifieddatetime='" + getLastmodifieddatetime() + "'" +
             ", domain='" + getDomain() + "'" +

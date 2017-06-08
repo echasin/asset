@@ -27,15 +27,22 @@ public class Assetassetmbr implements Serializable {
     private Long id;
 
     @Size(max = 100)
-    @Column(name = "jhi_comment", length = 100)
+    @Column(name = "comment", length = 100)
     private String comment;
 
-    @Column(name = "xcoordinate")
-    private Integer xcoordinate;
+    @Column(name = "parentxcoordinate")
+    private Integer parentxcoordinate;
 
-    @Column(name = "ycoordinate")
-    private Integer ycoordinate;
+    @Column(name = "parentycoordinate")
+    private Integer parentycoordinate;
 
+    @Column(name = "childxcoordinate")
+    private Integer childxcoordinate;
+
+    @Column(name = "childycoordinate")
+    private Integer childycoordinate;
+
+    
     @Size(max = 100)
     @Column(name = "parentinstance", length = 100)
     private String parentinstance;
@@ -44,27 +51,19 @@ public class Assetassetmbr implements Serializable {
     @Column(name = "childinstance", length = 100)
     private String childinstance;
 
-    @NotNull
-    @Size(max = 20)
-    @Column(name = "nameshort", length = 20, nullable = false)
-    private String nameshort;
-
     @Size(max = 255)
     @Column(name = "description", length = 255)
     private String description;
 
-    @NotNull
     @Size(max = 25)
-    @Column(name = "status", length = 25, nullable = false)
+    @Column(name = "status", length = 25)
     private String status;
 
-    @NotNull
     @Size(max = 50)
-    @Column(name = "lastmodifiedby", length = 50, nullable = false)
+    @Column(name = "lastmodifiedby", length = 50)
     private String lastmodifiedby;
 
-    @NotNull
-    @Column(name = "lastmodifieddatetime", nullable = false)
+    @Column(name = "lastmodifieddatetime")
     private ZonedDateTime lastmodifieddatetime;
 
     @Size(max = 25)
@@ -106,33 +105,41 @@ public class Assetassetmbr implements Serializable {
         this.comment = comment;
     }
 
-    public Integer getXcoordinate() {
-        return xcoordinate;
-    }
+  
 
-    public Assetassetmbr xcoordinate(Integer xcoordinate) {
-        this.xcoordinate = xcoordinate;
-        return this;
-    }
+    public Integer getParentxcoordinate() {
+		return parentxcoordinate;
+	}
 
-    public void setXcoordinate(Integer xcoordinate) {
-        this.xcoordinate = xcoordinate;
-    }
+	public void setParentxcoordinate(Integer parentxcoordinate) {
+		this.parentxcoordinate = parentxcoordinate;
+	}
 
-    public Integer getYcoordinate() {
-        return ycoordinate;
-    }
+	public Integer getParentycoordinate() {
+		return parentycoordinate;
+	}
 
-    public Assetassetmbr ycoordinate(Integer ycoordinate) {
-        this.ycoordinate = ycoordinate;
-        return this;
-    }
+	public void setParentycoordinate(Integer parentycoordinate) {
+		this.parentycoordinate = parentycoordinate;
+	}
 
-    public void setYcoordinate(Integer ycoordinate) {
-        this.ycoordinate = ycoordinate;
-    }
+	public Integer getChildxcoordinate() {
+		return childxcoordinate;
+	}
 
-    public String getParentinstance() {
+	public void setChildxcoordinate(Integer childxcoordinate) {
+		this.childxcoordinate = childxcoordinate;
+	}
+
+	public Integer getChildycoordinate() {
+		return childycoordinate;
+	}
+
+	public void setChildycoordinate(Integer childycoordinate) {
+		this.childycoordinate = childycoordinate;
+	}
+
+	public String getParentinstance() {
         return parentinstance;
     }
 
@@ -156,19 +163,6 @@ public class Assetassetmbr implements Serializable {
 
     public void setChildinstance(String childinstance) {
         this.childinstance = childinstance;
-    }
-
-    public String getNameshort() {
-        return nameshort;
-    }
-
-    public Assetassetmbr nameshort(String nameshort) {
-        this.nameshort = nameshort;
-        return this;
-    }
-
-    public void setNameshort(String nameshort) {
-        this.nameshort = nameshort;
     }
 
     public String getDescription() {
@@ -308,21 +302,15 @@ public class Assetassetmbr implements Serializable {
         return Objects.hashCode(getId());
     }
 
-    @Override
-    public String toString() {
-        return "Assetassetmbr{" +
-            "id=" + getId() +
-            ", comment='" + getComment() + "'" +
-            ", xcoordinate='" + getXcoordinate() + "'" +
-            ", ycoordinate='" + getYcoordinate() + "'" +
-            ", parentinstance='" + getParentinstance() + "'" +
-            ", childinstance='" + getChildinstance() + "'" +
-            ", nameshort='" + getNameshort() + "'" +
-            ", description='" + getDescription() + "'" +
-            ", status='" + getStatus() + "'" +
-            ", lastmodifiedby='" + getLastmodifiedby() + "'" +
-            ", lastmodifieddatetime='" + getLastmodifieddatetime() + "'" +
-            ", domain='" + getDomain() + "'" +
-            "}";
-    }
+	@Override
+	public String toString() {
+		return "Assetassetmbr [id=" + id + ", comment=" + comment + ", parentxcoordinate=" + parentxcoordinate
+				+ ", parentycoordinate=" + parentycoordinate + ", childxcoordinate=" + childxcoordinate
+				+ ", childycoordinate=" + childycoordinate + ", parentinstance=" + parentinstance + ", childinstance="
+				+ childinstance + ", description=" + description + ", status=" + status
+				+ ", lastmodifiedby=" + lastmodifiedby + ", lastmodifieddatetime=" + lastmodifieddatetime + ", domain="
+				+ domain + ", parentasset=" + parentasset + ", childasset=" + childasset + ", model=" + model + "]";
+	}
+
+    
 }

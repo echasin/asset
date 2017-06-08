@@ -5,12 +5,14 @@ import com.innvo.domain.Model;
 
 import com.innvo.repository.ModelRepository;
 import com.innvo.repository.search.ModelSearchRepository;
+import com.innvo.service.DomainService;
 import com.innvo.web.rest.util.HeaderUtil;
 import com.innvo.web.rest.util.PaginationUtil;
 import io.swagger.annotations.ApiParam;
 import io.github.jhipster.web.util.ResponseUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpHeaders;
@@ -21,6 +23,10 @@ import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 import java.net.URI;
 import java.net.URISyntaxException;
+
+import java.time.ZoneId;
+import java.time.ZonedDateTime;
+
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -43,6 +49,9 @@ public class ModelResource {
 
     private final ModelSearchRepository modelSearchRepository;
 
+    @Autowired
+    DomainService domainService;
+    
     public ModelResource(ModelRepository modelRepository, ModelSearchRepository modelSearchRepository) {
         this.modelRepository = modelRepository;
         this.modelSearchRepository = modelSearchRepository;
@@ -62,6 +71,9 @@ public class ModelResource {
         if (model.getId() != null) {
             return ResponseEntity.badRequest().headers(HeaderUtil.createFailureAlert(ENTITY_NAME, "idexists", "A new model cannot already have an ID")).body(null);
         }
+        ZonedDateTime lastmodifieddate = ZonedDateTime.now(ZoneId.systemDefault());
+        model.setLastmodifieddatetime(lastmodifieddate);
+        model.setDomain(domainService.getDomain());
         Model result = modelRepository.save(model);
         modelSearchRepository.save(result);
         return ResponseEntity.created(new URI("/api/models/" + result.getId()))
@@ -85,6 +97,9 @@ public class ModelResource {
         if (model.getId() == null) {
             return createModel(model);
         }
+        ZonedDateTime lastmodifieddate = ZonedDateTime.now(ZoneId.systemDefault());
+        model.setLastmodifieddatetime(lastmodifieddate);
+        model.setDomain(domainService.getDomain());
         Model result = modelRepository.save(model);
         modelSearchRepository.save(result);
         return ResponseEntity.ok()
