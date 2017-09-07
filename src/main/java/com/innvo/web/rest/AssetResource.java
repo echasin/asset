@@ -167,5 +167,17 @@ public class AssetResource {
         return new ResponseEntity<>(page.getContent(), headers, HttpStatus.OK);
     }
 
+    /**
+     * 
+     * @param query
+     * @return
+     */
+    @GetMapping("/searchAsset/{query}")
+    @Timed
+    public ResponseEntity<List<Asset>> getAsset(@PathVariable String query,@ApiParam Pageable pageable) {
+        log.debug("Search Asset  : {}", query);
+        Page<Asset> page = assetSearchRepository.search(queryStringQuery(query),pageable);
+        return new ResponseEntity<>(page.getContent(), HttpStatus.OK);
+    }
 
 }

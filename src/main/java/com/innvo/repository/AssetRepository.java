@@ -3,6 +3,8 @@ package com.innvo.repository;
 import com.innvo.domain.Asset;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
+
 import org.springframework.data.jpa.repository.*;
 
 
@@ -12,5 +14,7 @@ import org.springframework.data.jpa.repository.*;
 @SuppressWarnings("unused")
 @Repository
 public interface AssetRepository extends JpaRepository<Asset,Long> {
+	
+   List<Asset> findByName(String name);
 
 }
